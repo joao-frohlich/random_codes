@@ -1,7 +1,7 @@
 import pika
 import random
 import time
-import thread
+import _thread
 import os
 
 
@@ -53,12 +53,12 @@ reader = connection2.channel()
 reader.basic_consume(on_message_callback=callback, queue=tag)
 print("Connected")
 print("Listening for new messages...")
-thread.start_new_thread(read, (reader))
+_thread.start_new_thread(read, (reader,))
 while True:
     print(
         "/send filename - To send a file located on project root folder (try with 1Mb sample named 'sample.file')"
     )
-    fileName = input()
+    fileName = input().replace('/send ','')
     channel.basic_publish(
         exchange="",
         routing_key=server_name,
