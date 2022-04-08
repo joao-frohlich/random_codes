@@ -1,7 +1,8 @@
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !mkdir ~/.vim
+  silent !mkdir ~/.vim/autoload
+  silent !wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 endif
 
 " Run PlugInstall if there are missing plugins
@@ -45,7 +46,8 @@ autocmd FileType html,css,php EmmetInstall
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 
-set nu
+set number
+set ruler
 set updatetime=500
 set shiftwidth=4
 set tabstop=4
